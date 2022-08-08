@@ -1,7 +1,24 @@
 #pragma once
-enum class PropertyType
+class PropertyType
 {
-	Float,
-	Boolean
+public:
+	enum Types
+	{
+		Float,
+		Boolean
+	};
+
+	static std::string ToString(Types type) 
+	{
+		switch (type)
+		{
+		case Types::Float:
+			return "FLOAT";
+			break;
+		case Types::Boolean:
+			return "BOOLEAN";
+			break;
+		}
+	}
 };
 

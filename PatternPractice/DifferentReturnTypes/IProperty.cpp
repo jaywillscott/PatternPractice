@@ -1,6 +1,6 @@
 #include "IProperty.h"
 
-IProperty::IProperty(std::string name, int id, PropertyType propertyType) :
+IProperty::IProperty(std::string name, int id, PropertyType::Types propertyType) :
 	name(name),
 	id(id),
 	propertyType(propertyType)
@@ -22,7 +22,7 @@ const int IProperty::GetId() const
 	return id;
 }
 
-const PropertyType IProperty::GetPropertyType() const
+const PropertyType::Types IProperty::GetPropertyType() const
 {
 	return propertyType;
 }

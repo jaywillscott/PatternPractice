@@ -23,8 +23,9 @@ int main()
 	{
 		const auto& name = property->GetName();
 		const auto& id = property->GetId();
+		const auto& type = PropertyType::ToString(property->GetPropertyType());
 
-		std::cout << id << " " << name << std::endl;
+		std::cout << id << " " << name << " " << type << std::endl;
 	}
 	std::cout <<  std::endl;
 
