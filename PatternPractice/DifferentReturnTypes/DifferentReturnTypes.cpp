@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "PropertyLibrary.h"
+#include "DifferentReturnTypes.h"
 
 int main()
 {
@@ -14,18 +15,30 @@ int main()
 	auto& floatProperties = propertyLibrary.GetFloatProperties(propertyLibrary.GetProperties());
 	auto& booleanProperties = propertyLibrary.GetBooleanProperties(propertyLibrary.GetProperties());
 
-	std::cout << "All Properties" << std::endl;
+	PrintProperties(propertyLibrary);
+
+	PrintFloatProperties(floatProperties);
+
+	PrintBooleanProperties(booleanProperties);
+}
+
+void PrintBooleanProperties(const std::vector<BooleanProperty*>& booleanProperties)
+{
+	std::cout << "Boolean Properties" << std::endl;
 	std::cout << "-------------------------------------" << std::endl;
-	for (IProperty* property : propertyLibrary.GetProperties())
+	for (BooleanProperty* property : booleanProperties)
 	{
 		const auto& name = property->GetName();
 		const auto& id = property->GetId();
-		const auto& type = PropertyType::ToString(property->GetPropertyType());
+		const auto& value = property->GetValue() ? "TRUE" : "FALSE";
 
-		std::cout << id << " " << name << " " << type << std::endl;
+		std::cout << id << " " << name << " " << value << std::endl;
 	}
-	std::cout <<  std::endl;
+	std::cout << std::endl;
+}
 
+void PrintFloatProperties(const std::vector<FloatProperty*>& floatProperties)
+{
 	std::cout << "Float Properties" << std::endl;
 	std::cout << "-------------------------------------" << std::endl;
 	for (FloatProperty* property : floatProperties)
@@ -37,16 +50,19 @@ int main()
 		std::cout << id << " " << name << " " << value << std::endl;
 	}
 	std::cout << std::endl;
+}
 
-	std::cout << "Boolean Properties" << std::endl;
+void PrintProperties(PropertyLibrary& propertyLibrary)
+{
+	std::cout << "All Properties" << std::endl;
 	std::cout << "-------------------------------------" << std::endl;
-	for (BooleanProperty* property : booleanProperties)
+	for (IProperty* property : propertyLibrary.GetProperties())
 	{
 		const auto& name = property->GetName();
 		const auto& id = property->GetId();
-		const auto& value = property->GetValue() ? "TRUE" : "FALSE";
+		const auto& type = PropertyType::ToString(property->GetPropertyType());
 
-		std::cout << id << " " << name << " " << value << std::endl;
+		std::cout << id << " " << name << " " << type << std::endl;
 	}
 	std::cout << std::endl;
 }
