@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BooleanProperty.h" />
+    <ClInclude Include="DifferentReturnTypes.h" />
     <ClInclude Include="FloatProperty.h" />
     <ClInclude Include="IProperty.h" />
     <ClInclude Include="PropertyLibrary.h" />
