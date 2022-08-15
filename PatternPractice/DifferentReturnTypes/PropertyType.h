@@ -22,3 +22,26 @@ public:
 	}
 };
 
+class PropertyScope
+{
+public:
+	enum Scopes
+	{
+		local,
+		world
+	};
+
+	static std::string ToString(Scopes type)
+	{
+		switch (type)
+		{
+		case Scopes::local:
+			return "LOCAL";
+			break;
+		case Scopes::world:
+			return "WORLD";
+			break;
+		}
+	}
+};
+

@@ -6,7 +6,7 @@ class BooleanProperty :
     public IProperty
 {
 public:
-	BooleanProperty(std::string name, int id, bool value);
+	BooleanProperty(std::string name, int id, bool value, std::vector<PropertyScope::Scopes> propertyScope);
 
 	bool GetValue()
 	{

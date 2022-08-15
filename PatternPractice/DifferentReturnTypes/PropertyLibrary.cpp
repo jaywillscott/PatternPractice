@@ -13,7 +13,7 @@ const std::vector<FloatProperty*> PropertyLibrary::GetFloatProperties(const std:
 	{
 		if (property->GetPropertyType() == PropertyType::Float)
 		{
-			floatProperties.emplace_back((FloatProperty*)property);
+			floatProperties.emplace_back(static_cast<FloatProperty*>(property));
 		}
 	}
 
@@ -28,7 +28,7 @@ const std::vector<BooleanProperty*> PropertyLibrary::GetBooleanProperties(const 
 	{
 		if (property->GetPropertyType() == PropertyType::Boolean)
 		{
-			booleanProperties.emplace_back((BooleanProperty*)property);
+			booleanProperties.emplace_back(static_cast<BooleanProperty*>(property));
 		}
 	}
 

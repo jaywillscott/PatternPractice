@@ -7,10 +7,10 @@ int main()
 {
 	auto propertyLibrary = PropertyLibrary();
 
-	propertyLibrary.AddProperty(new FloatProperty("MyFloatProperty1", 1, 1.23F));
-	propertyLibrary.AddProperty(new FloatProperty("MyFloatProperty2", 2, 4.56F));
-	propertyLibrary.AddProperty(new BooleanProperty("MyBooleanProperty1", 3, true));
-	propertyLibrary.AddProperty(new BooleanProperty("MyBooleanProperty2", 4, false));
+	propertyLibrary.AddProperty(new FloatProperty("MyFloatProperty1", 1, 1.23F, std::vector<PropertyScope::Scopes>({ PropertyScope::local })));
+	propertyLibrary.AddProperty(new FloatProperty("MyFloatProperty2", 2, 4.56F, std::vector<PropertyScope::Scopes>({PropertyScope::world})));
+	propertyLibrary.AddProperty(new BooleanProperty("MyBooleanProperty1", 3, true, std::vector<PropertyScope::Scopes>({ PropertyScope::local })));
+	propertyLibrary.AddProperty(new BooleanProperty("MyBooleanProperty2", 4, false, std::vector<PropertyScope::Scopes>({ PropertyScope::local, PropertyScope::world })));
 
 	auto& floatProperties = propertyLibrary.GetFloatProperties(propertyLibrary.GetProperties());
 	auto& booleanProperties = propertyLibrary.GetBooleanProperties(propertyLibrary.GetProperties());
@@ -46,8 +46,6 @@ void PrintFloatProperties(const std::vector<FloatProperty*>& floatProperties)
 		const auto& name = property->GetName();
 		const auto& id = property->GetId();
 		const auto& value = property->GetValue();
-
-		std::cout << id << " " << name << " " << value << std::endl;
 	}
 	std::cout << std::endl;
 }
@@ -61,8 +59,16 @@ void PrintProperties(PropertyLibrary& propertyLibrary)
 		const auto& name = property->GetName();
 		const auto& id = property->GetId();
 		const auto& type = PropertyType::ToString(property->GetPropertyType());
+		const auto& scopes = property->GetPropertyScopes();
 
-		std::cout << id << " " << name << " " << type << std::endl;
+		std::string scopesString = "";
+
+		for (const auto& scope : scopes)
+		{
+			scopesString += PropertyScope::ToString(scope) + " ";
+		}
+
+		std::cout << id << " " << name << " " << type << " " << scopesString << std::endl;
 	}
 	std::cout << std::endl;
 }
